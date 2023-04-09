@@ -38,19 +38,70 @@ function isLandscaped(width, height) { return width > height }
 // return the same number if it is neither divisbile by 3 and 5
 
 
-const fizzBuzzGame = function (num){
-    if(typeof(num) !== 'number') return NaN;
-    else if(num % 3 === 0 && num % 5 === 0) return 'FizzBuzz';
-    else if(num % 3 === 0) return 'Fizz';
-    else if(num % 5 === 0) return 'Buzz';
+const fizzBuzzGame = function (num) {
+    if (typeof (num) == 'number') return NaN;
+    else if (num % 3 === 0 && num % 5 === 0) return 'FizzBuzz';
+    else if (num % 3 === 0) return 'Fizz';
+    else if (num % 5 === 0) return 'Buzz';
     else return num;
 };
 
 console.log(fizzBuzzGame(9));
 console.log(fizzBuzzGame(15));
 console.log(fizzBuzzGame(20));
-console.log(fizzBuzzGame(true));  // should be NaN beacuse it is Not A Number
 console.log(fizzBuzzGame(7));
+console.log(fizzBuzzGame(true));  // should be NaN beacuse it is Not A Number
 
 
+// speed check 
+
+const speedCheck = function (speed) {
+
+    const limitSpeed = 70;
+    const pointPerKm = 5;
+
+    if (speed <= limitSpeed + 4) {
+        return 'OK';
+    }
+    else {
+        const point = Math.floor((speed - limitSpeed) / pointPerKm);
+        if (point >= 12) {
+            return 'License Suspended';
+        }
+        else {
+            return 'Point ' + point;
+        }
+    }
+}
+
+console.log(speedCheck(180));
+console.log(speedCheck(70));
+console.log(speedCheck(90));
+
+
+
+console.log(evenOrOdd(10));
+console.log(evenOrOdd(9));
+
+function evenOrOdd(num) {
+    return num % 2 == 0 ? 'even number' : 'odd number';
+}
+
+// count truthy values
+
+const countTruthy = function (array) {
+    let count = 0;
+    array.forEach(element => {
+
+        //    falsy values --> null, undefined, 0, false, NaN, ''  
+
+        if (element) count++;
+
+    });
+    return count;
+
+}
+
+const arr1 = [1, null, false, true, 4, '', NaN, 'Sanjiv'];
+console.log('Total truthy number : ', countTruthy(arr1));
 
