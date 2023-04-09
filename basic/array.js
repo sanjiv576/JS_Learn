@@ -129,7 +129,150 @@ const productWithStock = [
 
 console.log(outOfStock(productWithStock));
 
-// Given an array of strings representing different cities, write a JavaScript function to filter out all cities that start with the letter "A".
-// Given an array of objects representing different employees, write a JavaScript function to filter out all employees who earn less than a certain amount, say $50,000 per year.
+// Given an array of strings representing different cities, write a JavaScript function 
+// to filter out all cities that start with the letter "A".
+const cities =['Athens', 'Kathmandu', 'Auburn', 'New York', 'Mumbai', 'Alexandar City']
+
+const filteredCities = (array) => {
+
+    const citiesBeginWithA = array.filter(item => item[0] == 'A')
+    return citiesBeginWithA.map(item => item)
+}
+
+console.log(filteredCities(cities))
+
+// Given an array of objects representing different employees, write a JavaScript function
+//  to filter out all employees who earn less than a certain amount, say $50,000 per year.
+
+function highPaidEmployee(array){
+    return array.filter(employee => employee.salary >= 50000)
+}
+
+const employees = [
+    {
+        employeeName : 'Josph',
+        salary : 23493
+    },
+    {
+        employeeName : 'John',
+        salary : 1459912
+    },
+    {
+        employeeName : 'Rock',
+        salary : 89343423
+    },
+    {
+        employeeName : 'David',
+        salary : 34002312
+    },
+    {
+        employeeName : 'Tom',
+        salary : 9834224
+    },{
+        employeeName : 'Helica',
+        salary : 1579
+    }
+]
+
+console.log(highPaidEmployee(employees))
+
+// Given an array of objects representing different employees, write a JavaScript function
+// to filter out all employees whose age is greater than 30 and whose department is not 'IT'.
+
+function ITemployees(array){
+    return array.filter(employee => employee.department != 'IT' && employee.age > 30)
+}
+const myEmployee = [
+    { name: 'Alice', age: 28, department: 'HR' },
+    { name: 'Bob', age: 35, department: 'Marketing' },
+    { name: 'Charlie', age: 42, department: 'IT' },
+    { name: 'David', age: 29, department: 'HR' },
+    { name: 'Emma', age: 32, department: 'IT' },
+    { name: 'Frank', age: 31, department: 'Sales' },
+    { name: 'George', age: 40, department: 'IT' },
+    { name: 'Helen', age: 27, department: 'HR' },
+    ];
+
+console.log(ITemployees(myEmployee))
 
 
+//  ------------------- reduce operation --------------------------
+
+
+// Given an array of numbers, write a JavaScript function to calculate the sum of all the elements using reduce() method.
+
+function addEachElement(array){
+    return array.reduce((acc, current) => acc += current, 0)
+}
+
+const nums = [1, 2, 3, 4, 4, 5, 5]
+
+console.log(addEachElement(nums))
+
+
+// Given an array of strings, write a JavaScript function 
+// to concatenate all the strings into a single string using reduce() method.
+
+const concatenateAllString = (array) => {
+    return array.reduce((prev, curr) => {
+        return prev + curr
+    }, '')
+}
+
+const programmingLanguages = ['Java', 'Python', 'JavaScript', 'Ruby', 'Go', 'Dart', 'C']
+
+console.log(concatenateAllString(programmingLanguages))
+
+// Given an array of objects representing students with their marks in different subjects,
+// write a JavaScript function to calculate the average marks of all students in all subjects using reduce() method.
+
+const averageMarks = (array) => {
+    // We use the Object.values() method to get an array of values of the 'marks' property of each student object. 
+    // The flat() method is used to flatten the resulting array of arrays into a single array.
+    const allMarks = array.map(student => Object.values(student.marks)).flat()
+    const totalMarks = allMarks.reduce((prev, curr) => prev + curr, 0)
+
+    return totalMarks/allMarks.length
+}
+
+
+const students = [
+    { name: 'John', marks: { maths: 60, science: 70, english: 80 } },
+    { name: 'Beck', marks: { maths: 90, science: 45, english: 76 } },
+    { name: 'Seth', marks: { maths: 40, science: 65, english: 88 } },
+    { name: 'Braun', marks: { maths: 78, science: 98, english: 45 } },
+
+]
+
+console.log(averageMarks(students))
+
+// Given an array of objects representing different items with their prices,
+//  write a JavaScript function to calculate the total price of all items after applying  10% discount using reduce() method.
+
+function itemsAfterDiscount(array){
+    const itemsWithDiscount = array.map(item => item.price - item.price * 0.1)
+
+    // return after adding all prices
+    return itemsWithDiscount.reduce((total, current) => total + current, 0)
+}
+
+const items = [
+    {itemName : 'T-shirt', price : 3500},
+    {itemName : 'Pant', price : 4500},
+    {itemName : 'Bag', price : 1500},
+    {itemName : 'Jacket', price : 5500},
+]
+
+console.log(itemsAfterDiscount(items));
+
+// Given an array of objects representing different employees with their salaries,
+// write a JavaScript function to calculate the total salary of all employees after deducting taxes using reduce() method.
+
+const allSalaryAfterTax = (array) => {
+    // deduct salary with 20% tax 
+    const salariesAfterTax = array.map(employee => employee.salary - employee.salary * 0.2)
+    // add each deducted salary
+    return salariesAfterTax.reduce((total, current) => total + current, 0)
+}
+
+console.log(allSalaryAfterTax(employees))
